@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+# 应用名称
+spring:
+  application:
+    name: ServicePlatform
+
+# Actuator Web 访问端口
+management:
+  server:
+    port: 8081
+  endpoints:
+    jmx:
+      exposure:
+        include: *
+    web:
+      exposure:
+        include: *
+  endpoint:
+    health:
+      show-details: always
