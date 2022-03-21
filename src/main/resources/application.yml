@@ -1,22 +1,55 @@
 server:
-  port: 8080
+  port: 18080
+  servlet:
+    context-path: /service
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+  compression:
+    enabled: true
+    min-response-size: 5120
+    mime-types:
+      - application/json
+      - application/xml
+      - application/protobuf
+      - application/x-protobuf
+  jetty:
+    threads:
+      acceptors: 2
+      selectors: 4
+    connection-idle-timeout: 18000
 
 # 应用名称
 spring:
   application:
     name: ServicePlatform
+  main:
+    allow-bean-definition-overriding: true
+  mvc:
+    pathmatch:
+      matching-strategy: path_pattern_parser
+  aop:
+    proxy-target-class: true
+  profiles:
+    active: @activeProfile@
+
+jasypt:
+  encryptor:
+    algorithm: PBEWITHHMACSHA512ANDAES_128
 
 # Actuator Web 访问端口
 management:
   server:
-    port: 8081
+    port: 18081
   endpoints:
     jmx:
       exposure:
-        include: *
+        include: "*"
     web:
+      base-path: /monitor
       exposure:
-        include: *
+        include: "*"
   endpoint:
     health:
       show-details: always
