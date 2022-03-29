@@ -6,12 +6,20 @@
     <groupId>com.hohenheim.java</groupId>
     <artifactId>ServicePlatform</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>ServicePlatform</name>
     <description>综合服务平台</description>
 
+    <modules>
+        <module>admin</module>
+        <module>user-sys</module>
+        <module>common</module>
+    </modules>
+
     <properties>
-        <java.version>8</java.version>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot-admin.version>2.3.1</spring-boot-admin.version>
@@ -157,38 +165,6 @@
             <version>1.2.8</version>
         </dependency>
 
-        <!-- 权限认证框架，在线文档：http://sa-token.dev33.cn/ -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-boot-starter</artifactId>
-            <version>${sa-token.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-aop</artifactId>
-            <version>${sa-token.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-dao-redis-jackson</artifactId>
-            <version>${sa-token.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-oauth2</artifactId>
-            <version>${sa-token.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-alone-redis</artifactId>
-            <version>${sa-token.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-jwt</artifactId>
-            <version>${sa-token.version}</version>
-        </dependency>
-
         <!-- hutool 系列，https://gitee.com/dromara/hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -240,80 +216,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <!-- 环境信息 -->
-    <profiles>
-        <!-- 本地开发环境 -->
-        <profile>
-            <id>local</id>
-            <properties>
-                <activeProfile>local</activeProfile>
-                <mailProfile>mailLocal</mailProfile>
-            </properties>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-        </profile>
-        <!-- 测试环境 -->
-        <profile>
-            <id>dev</id>
-            <properties>
-                <activeProfile>dev</activeProfile>
-                <mailProfile>mailDev</mailProfile>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <!-- 生产环境 -->
-        <profile>
-            <id>prod</id>
-            <properties>
-                <activeProfile>prod</activeProfile>
-                <mailProfile>mailProd</mailProfile>
-            </properties>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>com.hohenheim.java.serviceplatform.ServicePlatformApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
-
 </project>

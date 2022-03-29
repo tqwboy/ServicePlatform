@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: ENC(aoOv18ziDNAJ4K2hRBB0sbL+3bWjukjBPFFAohhGo6ggKxBN25Uppfwzq/9psAzKGrHexesJbkMGgTUQgJxpvA5xOv3eC9mGFM6b/o9UpDRf0ri7oy8hTrdbt8uNjarR0sHyM+jQLpIUXiYvw84Mjdg71yx0pCHcpJIqWDfZs1q0WE3G48BlKjN6U/ianRyKG5DtHsYzEvVI5cbAQ4PqH8g69MLOH/25hbZHtzH9vk+eyqqzrsZjU24z8apwxMha)
+    username: ENC(2NF6et10c/Di3xNGyrfBP36fgtWhs8u2WiVjZiPuQNTDZ6Prh+iOu42e4QCnk4vA)
+    password: ENC(wrFbSGKj8EnC96LDlPHEHUShB3lEBsoLb2JA6DJV/u5N2OMJ4U4s1SdD/BO3crtN)
+    druid:
+      #连接池管理页面
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: 123456
+        reset-enable: true
+        allow:
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 2000
+        commons-log:
+          connection-log-error-enabled: true
+          connection-rollback-after-log-enabled: true
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.jpeg,*.png,*.css,*.ico,*.jsp,/druid/*'
+        principal-session-name: service_druid_session
+        session-stat-enable: true
+        session-stat-max-count: 2000
+        profile-enable: true
+
+  redis:
+    host: ENC(XjxB+lfEiThXLFJX7OwLVxW5AbOAyxlFLygbSIwBExHIkubkDpqJ00WmJ9WuqcMq)
+    password: ENC(6QeoernnXg9CutrCFamZu6bZYnyxiTiouD0B3u4WsLwdb8sQFIgmIkbtXoVKrt5s)
+    database: 0
