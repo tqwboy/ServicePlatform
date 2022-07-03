@@ -31,4 +31,4 @@ spring:
   redis:
     host: ENC(XjxB+lfEiThXLFJX7OwLVxW5AbOAyxlFLygbSIwBExHIkubkDpqJ00WmJ9WuqcMq)
     password: ENC(6QeoernnXg9CutrCFamZu6bZYnyxiTiouD0B3u4WsLwdb8sQFIgmIkbtXoVKrt5s)
-    database: 0
+    database: 8

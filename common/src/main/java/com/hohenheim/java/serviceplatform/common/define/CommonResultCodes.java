@@ -5,7 +5,7 @@ package com.hohenheim.java.serviceplatform.common.define;
  * @date 2022/3/27
  * @description 通用结果码
  */
-public enum CommonResultCodes {
+public enum CommonResultCodes implements IResultCode {
     /* 通用错误 */
     RETURN_SUCCESS(0, "执行成功"),
     COMMON_SYSTEM_ERROR(1, "服务错误"),

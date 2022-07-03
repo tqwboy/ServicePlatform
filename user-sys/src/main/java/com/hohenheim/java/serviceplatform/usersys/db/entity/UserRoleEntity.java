@@ -32,7 +32,7 @@ public class UserRoleEntity implements Serializable {
     /**
      * 角色ID
      */
-    @TableId(value = "role_id", type = IdType.INPUT)
+    @TableField(value = "role_id")
     private Long roleId;
 
     @TableField("create_time")

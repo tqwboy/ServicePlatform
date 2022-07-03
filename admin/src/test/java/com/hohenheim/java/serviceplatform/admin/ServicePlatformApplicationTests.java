@@ -16,11 +16,8 @@ class ServicePlatformApplicationTests {
 
     @Test
     void encryptor() {
-        String redisUrl = mEncryptor.encrypt("192.168.88.5");
-        String redisPwd = mEncryptor.encrypt("tqw1986216$");
-
-        System.out.println("redisUrl:" + redisUrl);
-        System.out.println("redisPwd:" + redisPwd);
+        String redisUrl = mEncryptor.encrypt("111");
+        System.out.println("密文:" + redisUrl);
 
         Assertions.assertEquals("", "");
     }

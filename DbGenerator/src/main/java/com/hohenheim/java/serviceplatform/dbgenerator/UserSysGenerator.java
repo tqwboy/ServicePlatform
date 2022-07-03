@@ -14,7 +14,7 @@ import java.util.Collections;
 /**
  * @author Hohenheim
  * @date 2022/3/20
- * @description
+ * @description 用户系统模块数据库相关文件生成
  */
 public class UserSysGenerator {
     public static void main(String[] args) {
@@ -48,7 +48,6 @@ public class UserSysGenerator {
                             .moduleName("db")
                             .mapper("mapper")
                             .entity("entity")
-                            .mapper("mapper")
                             .service("dao")
                             .serviceImpl("dao.impl")
                             .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + "/user-sys/src/main/resources/db/mapper")); // 设置mapperXml生成路径

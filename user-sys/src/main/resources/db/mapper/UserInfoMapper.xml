@@ -7,6 +7,7 @@
         <id column="user_id" property="userId" />
         <result column="tenant_id" property="tenantId" />
         <result column="pwd" property="pwd" />
+        <result column="salt" property="salt" />
         <result column="user_name" property="userName" />
         <result column="email" property="email" />
         <result column="mobile" property="mobile" />
@@ -20,7 +21,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        user_id, tenant_id, pwd, user_name, email, mobile, avatar, sex, status, deleted, create_time, update_time
+        user_id, tenant_id, pwd, salt, user_name, email, mobile, avatar, sex, status, deleted, create_time, update_time
     </sql>
 
 </mapper>

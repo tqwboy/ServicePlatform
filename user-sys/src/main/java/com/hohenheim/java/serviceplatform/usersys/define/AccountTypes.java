@@ -1,4 +1,4 @@
-package com.hohenheim.java.serviceplatform.usersys;
+package com.hohenheim.java.serviceplatform.usersys.define;
 
 import cn.hutool.core.lang.Validator;
 

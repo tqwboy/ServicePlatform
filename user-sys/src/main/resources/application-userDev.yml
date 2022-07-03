@@ -1,14 +1,3 @@
-spring:
-  datasource:
-    url: ENC(aoOv18ziDNAJ4K2hRBB0sbL+3bWjukjBPFFAohhGo6ggKxBN25Uppfwzq/9psAzKGrHexesJbkMGgTUQgJxpvA5xOv3eC9mGFM6b/o9UpDRf0ri7oy8hTrdbt8uNjarR0sHyM+jQLpIUXiYvw84Mjdg71yx0pCHcpJIqWDfZs1q0WE3G48BlKjN6U/ianRyKG5DtHsYzEvVI5cbAQ4PqH8g69MLOH/25hbZHtzH9vk+eyqqzrsZjU24z8apwxMha)
-    username: ENC(2NF6et10c/Di3xNGyrfBP36fgtWhs8u2WiVjZiPuQNTDZ6Prh+iOu42e4QCnk4vA)
-    password: ENC(wrFbSGKj8EnC96LDlPHEHUShB3lEBsoLb2JA6DJV/u5N2OMJ4U4s1SdD/BO3crtN)
-
-  redis:
-    host: ENC(XjxB+lfEiThXLFJX7OwLVxW5AbOAyxlFLygbSIwBExHIkubkDpqJ00WmJ9WuqcMq)
-    password: ENC(6QeoernnXg9CutrCFamZu6bZYnyxiTiouD0B3u4WsLwdb8sQFIgmIkbtXoVKrt5s)
-    database: 0
-
 # sa-token框架配置
 sa-token:
   token-name: ServicePlatformUserToken #Token名称 (同时也是cookie名称)

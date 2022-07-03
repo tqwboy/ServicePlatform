@@ -1,6 +1,6 @@
 package com.hohenheim.java.serviceplatform.usersys.define;
 
-import com.hohenheim.java.serviceplatform.common.define.CommonResultCodes;
+import com.hohenheim.java.serviceplatform.common.define.IResultCode;
 
 /**
  * @author Hohenheim
@@ -9,7 +9,7 @@ import com.hohenheim.java.serviceplatform.common.define.CommonResultCodes;
  * 800~1999：用户系统相关
  * 2000~2999 漫画系统相关
  */
-public enum ResultCodes {
+public enum ResultCodes implements IResultCode {
 	/**
 	 * 1000~1999 用户系统
 	 */

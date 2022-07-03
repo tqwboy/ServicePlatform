@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -21,6 +23,7 @@ import lombok.Data;
 @TableName("login_record")
 public class LoginRecordEntity implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -2767007904579248448L;
 
     @TableId(value = "id", type = IdType.AUTO)
@@ -61,6 +64,4 @@ public class LoginRecordEntity implements Serializable {
      */
     @TableField("login_time")
     private LocalDateTime loginTime;
-
-
 }

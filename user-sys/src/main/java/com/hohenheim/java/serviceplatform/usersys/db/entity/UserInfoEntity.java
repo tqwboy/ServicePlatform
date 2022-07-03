@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -20,7 +22,7 @@ import lombok.Data;
 @Data
 @TableName("user_info")
 public class UserInfoEntity implements Serializable {
-
+    @Serial
     private static final long serialVersionUID = 9015389113360790151L;
 
     /**
@@ -40,6 +42,12 @@ public class UserInfoEntity implements Serializable {
      */
     @TableField("pwd")
     private String pwd;
+
+    /**
+     * 密码
+     */
+    @TableField("salt")
+    private String salt;
 
     /**
      * 用户名

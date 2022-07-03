@@ -13,27 +13,28 @@
     <artifactId>admin</artifactId>
     <description>项目入口</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.hohenheim.java</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hohenheim.java</groupId>
+            <artifactId>user-sys</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
     <!-- 环境信息 -->
     <profiles>
-        <!-- 本地开发环境 -->
-        <profile>
-            <id>local</id>
-            <properties>
-                <activeProfile>local</activeProfile>
-                <userProfile>userLocal</userProfile>
-                <mailProfile>mailLocal</mailProfile>
-            </properties>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-        </profile>
         <!-- 测试环境 -->
         <profile>
             <id>dev</id>
             <properties>
                 <activeProfile>dev</activeProfile>
                 <userProfile>userDev</userProfile>
-                <mailProfile>mailDev</mailProfile>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -44,8 +45,7 @@
             <id>prod</id>
             <properties>
                 <activeProfile>prod</activeProfile>
-                <userProfile>userProd</userProfile>
-                <mailProfile>mailProd</mailProfile>
+                <activeProfile>userProd</activeProfile>
             </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
