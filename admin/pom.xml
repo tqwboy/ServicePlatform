@@ -22,13 +22,13 @@
 
         <dependency>
             <groupId>com.hohenheim.java</groupId>
-            <artifactId>user-sys</artifactId>
+            <artifactId>biz_account</artifactId>
             <version>1.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>com.hohenheim.java</groupId>
-            <artifactId>message</artifactId>
+            <artifactId>biz_message</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>

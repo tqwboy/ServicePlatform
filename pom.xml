@@ -13,8 +13,8 @@
     <modules>
         <module>admin</module>
         <module>core</module>
-        <module>user-sys</module>
-        <module>message</module>
+        <module>biz_account</module>
+        <module>biz_message</module>
     </modules>
 
     <properties>
@@ -220,6 +220,13 @@
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>3.0.4</version>
+        </dependency>
+
+        <!-- ID生成库  https://github.com/yitter/IdGenerator -->
+        <dependency>
+            <groupId>com.github.yitter</groupId>
+            <artifactId>yitter-idgenerator</artifactId>
+            <version>1.0.6</version>
         </dependency>
 
         <!-- 其他 -->

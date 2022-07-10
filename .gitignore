@@ -47,3 +47,5 @@ target/
 /admin/src/main/resources/application-local.yml
 message/src/main/resources/application-messageLocal.yml
 user-sys/src/main/resources/application-userLocal.yml
+biz_account/src/main/resources/application-accountLocal.yml
+biz_message/src/main/resources/application-messageLocal.yml

@@ -3,7 +3,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <contextName>${HOSTNAME}</contextName>
-    <conversionRule conversionWord="ip" converterClass="com.hohenheim.java.serviceplatform.common.web.conf.IpLogConfig" />
+    <conversionRule conversionWord="ip" converterClass="com.hohenheim.java.serviceplatform.core.web.conf.IpLogConfig" />
 
     <property name="appName" value="ServicePlatform" />
     <property name="LOG_PATH_INFO" value="/app/logs/prod/info" />
