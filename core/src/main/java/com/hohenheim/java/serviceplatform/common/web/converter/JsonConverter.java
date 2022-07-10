@@ -3,7 +3,7 @@ package com.hohenheim.java.serviceplatform.common.web.converter;
 import cn.hutool.core.collection.ListUtil;
 import com.hohenheim.java.serviceplatform.common.anno.JsonConverterExec;
 import com.hohenheim.java.serviceplatform.common.define.CommonResultCodes;
-import com.hohenheim.java.serviceplatform.common.web.ResultPackWrapper;
+import com.hohenheim.java.serviceplatform.common.web.ResponsePack;
 import com.hohenheim.java.serviceplatform.common.model.BaseRespModel;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.converter.HttpMessageNotWritableException;
@@ -51,24 +51,24 @@ public class JsonConverter extends MappingJackson2HttpMessageConverter {
                 respData = object;
             }
             else if (jsonConverter.successPacking()) {
-                respData = ResultPackWrapper.reqSuccess(object);
+                respData = ResponsePack.reqSuccess(object);
             }
             else {
-                BaseRespModel<Object> respModel = ResultPackWrapper.reqFail(CommonResultCodes.REQ_OPT_FAILURE);
+                BaseRespModel<Object> respModel = ResponsePack.reqFail(CommonResultCodes.REQ_OPT_FAILURE);
                 respModel.setData(object);
                 respData = respModel;
             }
         }
         else if(object instanceof Boolean value) {
             if(value) {
-                respData = ResultPackWrapper.reqSuccess();
+                respData = ResponsePack.reqSuccess();
             }
             else {
-                respData = ResultPackWrapper.reqFail(CommonResultCodes.REQ_OPT_FAILURE);
+                respData = ResponsePack.reqFail(CommonResultCodes.REQ_OPT_FAILURE);
             }
         }
         else {
-            respData = ResultPackWrapper.reqSuccess(object);
+            respData = ResponsePack.reqSuccess(object);
         }
 
         super.writeInternal(respData, type, outputMessage);

@@ -1,4 +1,4 @@
-package com.hohenheim.java.serviceplatform.admin;
+package com.hohenheim.java.serviceplatform;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

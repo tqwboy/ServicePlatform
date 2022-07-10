@@ -1,0 +1,24 @@
+spring:
+  mail:
+    default-encoding: UTF-8
+    host: smtp.a.com
+    username: a@b.com
+    password: 123456
+    port: 465
+
+    # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
+    # 如果设置false，可以不设置用户名和密码，当然也得看你的对接的平台是否支持无密码进行访问的。
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true # STARTTLS[1]  是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信。
+            required: true
+          timeout: 15000
+          ssl:
+            trust: smtp.a.com  #信任所有证书，如果有较高安全需要，该配置需要去除，并在jre中导入被信任的证书
+            enable: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory

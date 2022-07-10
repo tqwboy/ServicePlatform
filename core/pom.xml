@@ -9,22 +9,24 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>user-sys</artifactId>
+    <artifactId>core</artifactId>
     <version>1.0.0</version>
-    <description>用户系统</description>
+    <description>公共组件包</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
-    <dependencies>
-        <!-- 项目内其他组件 -->
-        <dependency>
-            <groupId>com.hohenheim.java</groupId>
-            <artifactId>core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-    </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -11,7 +11,7 @@ import com.hohenheim.java.serviceplatform.common.model.SuccessRespModel;
  * @date 2019/12/22
  * @description 响应数据封装
  */
-public class ResultPackWrapper {
+public class ResponsePack {
     public static SuccessRespModel<Object> reqSuccess() {
         return reqSuccess(null);
     }

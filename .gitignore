@@ -45,3 +45,5 @@ target/
 /mvnw
 /mvnw.cmd
 /admin/src/main/resources/application-local.yml
+message/src/main/resources/application-messageLocal.yml
+user-sys/src/main/resources/application-userLocal.yml

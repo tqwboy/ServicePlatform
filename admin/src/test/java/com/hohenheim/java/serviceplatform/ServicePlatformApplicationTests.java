@@ -1,5 +1,7 @@
-package com.hohenheim.java.serviceplatform.admin;
+package com.hohenheim.java.serviceplatform;
 
+import com.hohenheim.java.serviceplatform.message.mail.MailService;
+import com.hohenheim.java.serviceplatform.message.mail.params.SimpleMailParams;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,9 @@ class ServicePlatformApplicationTests {
     @Autowired
     private StringEncryptor mEncryptor;
 
+    @Autowired
+    private MailService mMailService;
+
     @Test
     void encryptor() {
         String redisUrl = mEncryptor.encrypt("111");
@@ -22,4 +27,14 @@ class ServicePlatformApplicationTests {
         Assertions.assertEquals("", "");
     }
 
+    @Test
+    void senMailTest() {
+        SimpleMailParams params = SimpleMailParams.newBuilder()
+                .to("a@b.com")
+                .title("测试")
+                .content("SpringBoot 测试邮件")
+                .build();
+
+        Assertions.assertTrue(mMailService.sendSimpleMail(params));
+    }
 }

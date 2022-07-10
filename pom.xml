@@ -5,15 +5,16 @@
 
     <groupId>com.hohenheim.java</groupId>
     <artifactId>ServicePlatform</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>ServicePlatform</name>
     <description>综合服务平台</description>
 
     <modules>
         <module>admin</module>
-        <module>common</module>
+        <module>core</module>
         <module>user-sys</module>
+        <module>message</module>
     </modules>
 
     <properties>
