@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -76,5 +75,24 @@ public class RegisterVerifyCodeRedisOps {
         }
 
         return cacheModel;
+    }
+
+    /**
+     * 删除缓存
+     * @param account 用户账号
+     */
+    @RegisterVerifyCodeCacheKeyAnno
+    public boolean delCache(String account) {
+        boolean delResult = true;
+
+        try {
+            mRedisOps.opsForValue().getAndDelete(account);
+        }
+        catch (RedisException e) {
+            delResult = false;
+            log.error("[Account Redis] 删除用户" + account + "注册验证码失败", e);
+        }
+
+        return delResult;
     }
 }

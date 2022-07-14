@@ -53,9 +53,7 @@ public final class BizAssert {
      * @param msg    不满足断言的异常信息
      */
     public static void notNull(Object object, String msg) {
-        if (object == null) {
-            throw newException(msg);
-        }
+        isTrue(null != object, msg);
     }
 
     /**
