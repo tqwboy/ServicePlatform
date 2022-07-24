@@ -24,6 +24,7 @@ public class RegisterVerifyCodeCacheKeyAop {
 
     @Pointcut("@annotation(com.hohenheim.java.serviceplatform.account.aop.anno.RegisterVerifyCodeCacheKeyAnno)")
     public void pointCut() {
+        // TODO document why this method is empty
     }
 
     @Around(value = "pointCut() && @annotation(keyAnno)")

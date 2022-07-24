@@ -63,9 +63,18 @@ public final class BizAssert {
      * @param supplier 错误消息供应器
      */
     public static void notNull(Object object, Supplier<String> supplier) {
-        if (object == null) {
-            throw newException(supplier.get());
-        }
+        isTrue(null != object, supplier);
+    }
+
+    /**
+     * 断言对象不为空
+     *
+     * @param object   对象
+     * @param resultCode 错误码
+     * @param exceptionClass 异常类
+     */
+    public static void notNull(Object object, IResultCode resultCode, Class<? extends ServicePlatformException> exceptionClass) {
+        isTrue(null != object, resultCode, exceptionClass);
     }
 
     /**
@@ -88,6 +97,16 @@ public final class BizAssert {
         isTrue(object == null, supplier);
     }
 
+    /**
+     * 断言对象为空
+     *
+     * @param object   obj
+     * @param resultCode 错误码
+     * @param exceptionClass 异常类
+     */
+    public static void isNull(Object object, IResultCode resultCode, Class<? extends ServicePlatformException> exceptionClass) {
+        isTrue(object == null, resultCode, exceptionClass);
+    }
 
     /**
      * 断言字符串不为空
@@ -107,6 +126,17 @@ public final class BizAssert {
      */
     public static void notBlank(String str, Supplier<String> supplier) {
         isTrue(CharSequenceUtil.isNotBlank(str), supplier);
+    }
+
+    /**
+     * 断言字符串不为空
+     *
+     * @param str      字符串
+     * @param resultCode 错误码
+     * @param exceptionClass 异常类
+     */
+    public static void notBlank(String str, IResultCode resultCode, Class<? extends ServicePlatformException> exceptionClass) {
+        isTrue(CharSequenceUtil.isNotBlank(str), resultCode, exceptionClass);
     }
 
     /**

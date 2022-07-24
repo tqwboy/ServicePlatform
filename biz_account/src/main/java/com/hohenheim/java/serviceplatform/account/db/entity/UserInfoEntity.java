@@ -1,9 +1,6 @@
 package com.hohenheim.java.serviceplatform.account.db.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.io.Serial;
@@ -83,12 +80,6 @@ public class UserInfoEntity implements Serializable {
      */
     @TableField("status")
     private Integer status;
-
-    /**
-     * 是否已删除
-     */
-    @TableField("deleted")
-    private Integer deleted;
 
     @TableField("create_time")
     private LocalDateTime createTime;

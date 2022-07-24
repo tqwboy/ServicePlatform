@@ -7,11 +7,11 @@ package com.hohenheim.java.serviceplatform.core.define;
  */
 public enum CoreResultCodes implements IResultCode {
     /* 通用错误 */
-    RETURN_SUCCESS("sys_0", "执行成功"),
-    CORE_SYSTEM_ERROR("sys_1", "服务错误"),
-    COMMON_INVALID_PARAMS("sys_2", "参数错误"),
-    REQ_OPT_FAILURE("sys_3", "系统繁忙"),
-    ILLEGAL_OPS("sys_4", "非法操作"),
+    RETURN_SUCCESS("core_0", "执行成功"),
+    CORE_SYSTEM_ERROR("core_1", "服务错误"),
+    CORE_INVALID_PARAMS("core_2", "参数错误"),
+    REQ_OPT_FAILURE("core_3", "系统繁忙"),
+    ILLEGAL_OPS("core_4", "非法操作"),
     ;
 
     private String code;

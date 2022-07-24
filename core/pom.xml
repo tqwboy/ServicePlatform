@@ -18,6 +18,15 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <!-- ID生成库  https://github.com/yitter/IdGenerator -->
+        <dependency>
+            <groupId>com.github.yitter</groupId>
+            <artifactId>yitter-idgenerator</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

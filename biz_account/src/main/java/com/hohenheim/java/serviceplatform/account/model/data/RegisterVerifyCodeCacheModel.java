@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 public class RegisterVerifyCodeCacheModel {
-    /** 验证码 */
-    private String code;
+    /** 用户账号 */
+    private String account;
 
     /** 验证码失效时间 */
     private LocalDateTime expireTime;
 
     private RegisterVerifyCodeCacheModel(Builder builder) {
-        setCode(builder.code);
+        setAccount(builder.account);
         setExpireTime(builder.expireTime);
     }
 
@@ -29,14 +29,14 @@ public class RegisterVerifyCodeCacheModel {
     }
 
     public static final class Builder {
-        private String code;
+        private String account;
         private LocalDateTime expireTime;
 
         private Builder() {
         }
 
-        public Builder code(String code) {
-            this.code = code;
+        public Builder account(String account) {
+            this.account = account;
             return this;
         }
 

@@ -1,6 +1,6 @@
 package com.hohenheim.java.serviceplatform.account.db.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.github.yulichang.base.MPJBaseMapper;
 import com.hohenheim.java.serviceplatform.account.db.entity.UserInfoEntity;
 
 /**
@@ -11,6 +11,6 @@ import com.hohenheim.java.serviceplatform.account.db.entity.UserInfoEntity;
  * @author Hohenheim
  * @since 2022-03-30
  */
-public interface UserInfoMapper extends BaseMapper<UserInfoEntity> {
+public interface UserInfoMapper extends MPJBaseMapper<UserInfoEntity> {
 
 }

@@ -141,6 +141,11 @@
             <version>3.5.2</version>
         </dependency>
         <dependency>
+            <groupId>com.github.yulichang</groupId>
+            <artifactId>mybatis-plus-join</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.4.2</version>
@@ -220,13 +225,6 @@
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>3.0.4</version>
-        </dependency>
-
-        <!-- ID生成库  https://github.com/yitter/IdGenerator -->
-        <dependency>
-            <groupId>com.github.yitter</groupId>
-            <artifactId>yitter-idgenerator</artifactId>
-            <version>1.0.6</version>
         </dependency>
 
         <!-- 其他 -->

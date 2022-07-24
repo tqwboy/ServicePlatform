@@ -4,11 +4,14 @@ import cn.dev33.satoken.interceptor.SaRouteInterceptor;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hohenheim.java.serviceplatform.account.core.resolver.GetLoginUserIdResolver;
 import com.hohenheim.java.serviceplatform.core.utils.SimpleJacksonUtils;
 import com.hohenheim.java.serviceplatform.web.converter.JsonConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
@@ -22,6 +25,9 @@ import java.util.List;
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
+	@Autowired
+	private GetLoginUserIdResolver mGetLoginUserIdResolver;
+
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		JsonConverter jsonDataConvert = new JsonConverter();
@@ -36,6 +42,12 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		converters.add(strConverter);
 
 		super.configureMessageConverters(converters);
+	}
+
+	@Override
+	protected void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		argumentResolvers.add(mGetLoginUserIdResolver);
+		super.addArgumentResolvers(argumentResolvers);
 	}
 
 	@Override

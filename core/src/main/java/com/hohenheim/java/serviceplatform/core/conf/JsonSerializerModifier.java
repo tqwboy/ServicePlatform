@@ -1,13 +1,13 @@
-package com.hohenheim.java.serviceplatform.core.cache.redis.conf;
+package com.hohenheim.java.serviceplatform.core.conf;
 
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
-import com.hohenheim.java.serviceplatform.core.cache.redis.conf.serializer.NullArrayJsonSerializer;
-import com.hohenheim.java.serviceplatform.core.cache.redis.conf.serializer.NullBooleanJsonSerializer;
-import com.hohenheim.java.serviceplatform.core.cache.redis.conf.serializer.NullNumberJsonSerializer;
-import com.hohenheim.java.serviceplatform.core.cache.redis.conf.serializer.NullStringJsonSerializer;
+import com.hohenheim.java.serviceplatform.core.conf.serializer.NullArrayJsonSerializer;
+import com.hohenheim.java.serviceplatform.core.conf.serializer.NullBooleanJsonSerializer;
+import com.hohenheim.java.serviceplatform.core.conf.serializer.NullNumberJsonSerializer;
+import com.hohenheim.java.serviceplatform.core.conf.serializer.NullStringJsonSerializer;
 
 import java.util.Collection;
 import java.util.List;

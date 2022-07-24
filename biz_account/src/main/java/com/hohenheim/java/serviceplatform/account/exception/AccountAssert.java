@@ -21,4 +21,12 @@ public final class AccountAssert {
     public static void isEmail(String content) {
         BizAssert.isTrue(Validator.isEmail(content), AccountResultCodes.EMAIL_FORMAT_ERROR, AccountException.class);
     }
+
+    /**
+     * 判断内容是否是手机号码
+     * @param content 要判断的内容
+     */
+    public static void isMobile(String content) {
+        BizAssert.isTrue(Validator.isMobile(content), AccountResultCodes.MOBIL_FORMAT_ERROR, AccountException.class);
+    }
 }

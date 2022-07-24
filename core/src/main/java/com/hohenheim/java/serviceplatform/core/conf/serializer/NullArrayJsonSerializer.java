@@ -1,4 +1,4 @@
-package com.hohenheim.java.serviceplatform.core.cache.redis.conf.serializer;
+package com.hohenheim.java.serviceplatform.core.conf.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -8,12 +8,15 @@ import java.io.IOException;
 
 /**
  * @author Hohenheim
- * @date 2020/7/12
- * @description
+ * @date 2020/7/11
+ * @description JSON 空数组解析
  */
-public class NullStringJsonSerializer extends JsonSerializer<Object> {
+public class NullArrayJsonSerializer extends JsonSerializer<Object> {
     @Override
     public void serialize(Object value, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        jsonGenerator.writeString("");
+        if (null == value) {
+            jsonGenerator.writeStartArray();
+            jsonGenerator.writeEndArray();
+        }
     }
 }

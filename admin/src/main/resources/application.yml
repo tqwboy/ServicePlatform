@@ -33,7 +33,7 @@ spring:
     proxy-target-class: true
   config:
     activate:
-      on-profile: local,accountLocal,messageLocal  #本地环境
+      on-profile: local,coreLocal,accountLocal,messageLocal  #本地环境
 #      on-profile: dev,accountDev,messageDev  #测试环境
 
 # Actuator Web 访问端口

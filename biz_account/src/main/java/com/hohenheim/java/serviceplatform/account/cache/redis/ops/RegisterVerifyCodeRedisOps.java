@@ -3,7 +3,6 @@ package com.hohenheim.java.serviceplatform.account.cache.redis.ops;
 import com.hohenheim.java.serviceplatform.account.aop.anno.RegisterVerifyCodeCacheKeyAnno;
 import com.hohenheim.java.serviceplatform.account.model.data.RegisterVerifyCodeCacheModel;
 import com.hohenheim.java.serviceplatform.core.cache.redis.RedisOpsConfig;
-import io.lettuce.core.RedisException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,80 +18,55 @@ import java.time.LocalDateTime;
  */
 @Component
 @Slf4j
-public class RegisterVerifyCodeRedisOps {
-    private RedisTemplate<String, RegisterVerifyCodeCacheModel> mRedisOps;
+public class RegisterVerifyCodeRedisOps extends BaseRedisOps<String, RegisterVerifyCodeCacheModel> {
     private RedisOpsConfig mRedisOpsConfig;
 
     public RegisterVerifyCodeRedisOps(@Qualifier("regCodeRedisTemplate") RedisTemplate<String, RegisterVerifyCodeCacheModel> redisOps,
                                       @Qualifier("regCodeRedisConfig") RedisOpsConfig redisOpsConfig) {
-        mRedisOps = redisOps;
+        super(redisOps, log);
         mRedisOpsConfig = redisOpsConfig;
 
     }
 
     /**
      * 保存用户注册验证码
+     * @param code 验证码，缓存KEY
      * @param account 用户账号
-     * @param code 验证码
      * @return 缓存失效日期
      */
     @RegisterVerifyCodeCacheKeyAnno
-    public LocalDateTime saveCache(String account, String code) {
+    public LocalDateTime setIfAbsent(String code, String account) {
         //计算失效日期
         LocalDateTime expireAt = LocalDateTime.now().plusSeconds(mRedisOpsConfig.getExpireSeconds());
         //设置缓存数据
         RegisterVerifyCodeCacheModel cacheModel = RegisterVerifyCodeCacheModel.newBuilder()
-                .code(code)
+                .account(account)
                 .expireTime(expireAt)
                 .build();
 
-        try {
-            mRedisOps.opsForValue().set(account, cacheModel, Duration.ofSeconds(mRedisOpsConfig.getExpireSeconds()));
-        }
-        catch (RedisException e) {
-            log.error("[Account Redis] 保存用户" + account.replace(mRedisOpsConfig.getKeyPrefix(), "")
-                    + "注册验证码数据发生异常", e);
+        boolean setResult = super.setIfAbsent(code, cacheModel, Duration.ofSeconds(mRedisOpsConfig.getExpireSeconds()), null);
+        if(!setResult) {
             expireAt = null;
         }
-
         return expireAt;
     }
 
     /**
      * 获取用户注册码缓存数据
-     * @param account 用户账号
+     * @param code 验证码
      * @return 用户注册验证码数据实体
      */
     @RegisterVerifyCodeCacheKeyAnno
-    public RegisterVerifyCodeCacheModel getCache(String account) {
-        RegisterVerifyCodeCacheModel cacheModel = null;
-        try {
-            cacheModel = mRedisOps.opsForValue().get(account);
-        }
-        catch (RedisException e) {
-            log.error("[Account Redis] 获取用户" + account.replace(mRedisOpsConfig.getKeyPrefix(), "")
-                    + "注册验证码数据发生异常", e);
-        }
-
-        return cacheModel;
+    public RegisterVerifyCodeCacheModel getCache(String code) {
+        return super.getCache(code, null);
     }
 
     /**
      * 删除缓存
-     * @param account 用户账号
+     * @param code 验证码
      */
     @RegisterVerifyCodeCacheKeyAnno
-    public boolean delCache(String account) {
-        boolean delResult = true;
-
-        try {
-            mRedisOps.opsForValue().getAndDelete(account);
-        }
-        catch (RedisException e) {
-            delResult = false;
-            log.error("[Account Redis] 删除用户" + account + "注册验证码失败", e);
-        }
-
-        return delResult;
+    public boolean delCache(String code) {
+        return super.delCache(code, null);
     }
 }

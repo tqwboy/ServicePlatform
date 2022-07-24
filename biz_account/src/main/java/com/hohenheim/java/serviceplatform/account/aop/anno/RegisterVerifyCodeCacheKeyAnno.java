@@ -12,5 +12,5 @@ import java.lang.annotation.*;
 @Documented
 public @interface RegisterVerifyCodeCacheKeyAnno {
     /** 用作缓存 KEY 值的参数的名称 */
-    String keyName() default "account";
+    String keyName() default "code";
 }
