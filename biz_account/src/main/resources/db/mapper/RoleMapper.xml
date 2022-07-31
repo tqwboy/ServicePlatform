@@ -13,4 +13,8 @@
         role_id, role_name
     </sql>
 
+    <sql id="Alias_Column_List">
+        r.role_id, r.role_name
+    </sql>
+
 </mapper>

@@ -76,7 +76,7 @@ public class AccountService {
         }
 
         // 创建用户信息
-        String salt = RandomUtil.randomString(RandomUtil.randomInt(6, 12));
+        String salt = RandomUtil.randomString(8);
         Long userId = mIIdGenerator.newLong();
 
         userInfo = new UserInfoEntity();
@@ -137,7 +137,7 @@ public class AccountService {
                 AccountResultCodes.VERIFY_CODE_MISTAKE, AccountException.class);
 
         //验证通过，修改用户状态
-        BizAssert.isNull(userInfo, AccountResultCodes.USER_EXIST, AccountException.class);
+        BizAssert.notNull(userInfo, AccountResultCodes.USER_NOT_EXIST, AccountException.class);
 
         UserInfoEntity updateEntity = new UserInfoEntity();
         updateEntity.setUserId(userInfo.getUserId());
@@ -157,7 +157,7 @@ public class AccountService {
     public LoginResp login(String account, String pwd) {
         // 检查账号
         UserInfoEntity userInfo = mUserManagerService.getUserInfoByAccount(account);
-        BizAssert.isNull(userInfo, AccountResultCodes.USER_NOT_EXIST, AccountException.class);
+        BizAssert.notNull(userInfo, AccountResultCodes.USER_NOT_EXIST, AccountException.class);
         BizAssert.isTrue(userInfo.getStatus() != AccountStatus.LOCKED.getCode() ,
                 AccountResultCodes.ACCOUNT_LOCKED, AccountException.class);
 

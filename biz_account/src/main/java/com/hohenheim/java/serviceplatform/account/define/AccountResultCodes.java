@@ -10,10 +10,6 @@ import com.hohenheim.java.serviceplatform.core.define.IResultCode;
  * 2000~2999 漫画系统相关
  */
 public enum AccountResultCodes implements IResultCode {
-	/**
-	 * 1000~1999 用户系统
-	 */
-
 	/* 登录、注册相关信息 */
 	MOBIL_FORMAT_ERROR("account_1", "请输入正确手机号码"),
 	EMAIL_FORMAT_ERROR("account_2", "请输入正确邮箱地址"),
@@ -36,16 +32,17 @@ public enum AccountResultCodes implements IResultCode {
 	TOKEN_SING_FAIL("account_15", "TOKEN签发失败"),
 	REGISTER_FAILURE("account_16", "注册失败"),
 
-	LOGIN_FAIL("account_50", "登录失败"),
-	NO_LOGIN_METHOD("account_51", "非法登录类型"),
-	NO_THIRD_PLATFORM("account_52", "不支持该登录方式"),
+	NOT_LOGIN("account_50", "未登录"),
+	LOGIN_FAIL("account_51", "登录失败"),
+	NO_LOGIN_METHOD("account_52", "非法登录类型"),
+	NO_THIRD_PLATFORM("account_53", "不支持该登录方式"),
 
-	NAME_PWD_MUST_NOT_EMPTY("account_53", "用户名和密码不能为空"),
-	EMAIL_PWD_MUST_NOT_EMPTY("account_54", "邮箱和密码不能为空"),
-	USER_NOT_EXIST("account_55", "用户不存在"),
-	ACCOUNT_NOT_VERIFY("account_56", "账号未验证"),
-	ACCOUNT_LOCKED("account_57", "账号已被封禁"),
-	ACCOUNT_OR_PWD_ERROR("account_58", "用户名或密码错误"),
+	NAME_PWD_MUST_NOT_EMPTY("account_54", "用户名和密码不能为空"),
+	EMAIL_PWD_MUST_NOT_EMPTY("account_55", "邮箱和密码不能为空"),
+	USER_NOT_EXIST("account_56", "用户不存在"),
+	ACCOUNT_NOT_VERIFY("account_57", "账号未验证"),
+	ACCOUNT_LOCKED("account_58", "账号已被封禁"),
+	ACCOUNT_OR_PWD_ERROR("account_59", "用户名或密码错误"),
 
 	/* Token检验 */
 	TOKEN_SIGN_EXCEPTION("account_100","非法登录凭证"),

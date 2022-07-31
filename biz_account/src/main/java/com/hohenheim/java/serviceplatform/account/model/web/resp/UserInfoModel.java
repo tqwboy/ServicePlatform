@@ -1,5 +1,6 @@
 package com.hohenheim.java.serviceplatform.account.model.web.resp;
 
+import cn.hutool.core.lang.Validator;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -24,4 +25,16 @@ public class UserInfoModel {
     private Integer sex;
 
     private LocalDateTime createTime;
+
+    public void setEmail(String email) {
+        if(Validator.isEmail(email)) {
+            this.email = email;
+        }
+    }
+
+    public void setMobile(String mobile) {
+        if(Validator.isMobile(mobile)) {
+            this.mobile = mobile;
+        }
+    }
 }

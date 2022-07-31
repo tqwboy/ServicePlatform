@@ -26,7 +26,7 @@ import java.util.List;
  * @date 2022/7/24
  * @description 统一错误处理中心
  */
-@ControllerAdvice(basePackages = "com.hohenheim.java.serviceplatform.*")
+@ControllerAdvice(basePackages = "com.hohenheim.java.serviceplatform")
 @Slf4j
 public class ExceptionAdvice {
     @ExceptionHandler(value = ServicePlatformException.class)

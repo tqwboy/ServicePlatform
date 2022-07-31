@@ -55,7 +55,7 @@ public enum AccountStatus {
             return AccountResultCodes.ACCOUNT_LOCKED;
         }
         else {
-            return CoreResultCodes.COMMON_INVALID_PARAMS;
+            return CoreResultCodes.CORE_INVALID_PARAMS;
         }
     }
 }

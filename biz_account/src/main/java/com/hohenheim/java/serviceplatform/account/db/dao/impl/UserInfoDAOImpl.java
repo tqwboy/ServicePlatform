@@ -3,11 +3,8 @@ package com.hohenheim.java.serviceplatform.account.db.dao.impl;
 import cn.hutool.core.lang.Validator;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import com.hohenheim.java.serviceplatform.account.db.dao.UserInfoDAO;
-import com.hohenheim.java.serviceplatform.account.db.entity.RoleEntity;
 import com.hohenheim.java.serviceplatform.account.db.entity.UserInfoEntity;
-import com.hohenheim.java.serviceplatform.account.db.entity.UserRoleEntity;
 import com.hohenheim.java.serviceplatform.account.db.entity.association.UserWithRoleEntity;
 import com.hohenheim.java.serviceplatform.account.db.mapper.UserInfoMapper;
 import org.springframework.stereotype.Repository;
@@ -40,13 +37,6 @@ public class UserInfoDAOImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
 
     @Override
     public UserWithRoleEntity getUserWithRoleInfo(Long userId) {
-        MPJLambdaWrapper<UserInfoEntity> queryWrapper = new MPJLambdaWrapper<>();
-        queryWrapper.selectAll(UserInfoEntity.class)
-                .selectAll(RoleEntity.class)
-                .leftJoin(UserRoleEntity.class, UserRoleEntity::getUserId, UserInfoEntity::getUserId)
-                .leftJoin(RoleEntity.class, RoleEntity::getRoleId, UserRoleEntity::getRoleId)
-                .eq(UserInfoEntity::getUserId, userId);
-
-        return getBaseMapper().selectJoinOne(UserWithRoleEntity.class, queryWrapper);
+        return getBaseMapper().getUserWithRoleInfo(userId);
     }
 }

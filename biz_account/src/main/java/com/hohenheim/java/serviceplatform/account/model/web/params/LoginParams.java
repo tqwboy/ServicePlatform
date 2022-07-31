@@ -15,5 +15,5 @@ public class LoginParams {
     private String account;
 
     @NotBlank(message = "请输入密码")
-    private String password;
+    private String pwd;
 }

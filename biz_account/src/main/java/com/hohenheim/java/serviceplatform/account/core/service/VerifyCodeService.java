@@ -6,11 +6,11 @@ import com.hohenheim.java.serviceplatform.account.define.AccountResultCodes;
 import com.hohenheim.java.serviceplatform.account.exception.AccountAssert;
 import com.hohenheim.java.serviceplatform.account.exception.AccountException;
 import com.hohenheim.java.serviceplatform.account.model.data.RegisterVerifyCodeCacheModel;
-import com.hohenheim.java.serviceplatform.core.define.CoreResultCodes;
 import com.hohenheim.java.serviceplatform.core.exception.BizAssert;
 import com.hohenheim.java.serviceplatform.message.mail.MailService;
 import com.hohenheim.java.serviceplatform.message.mail.params.SimpleMailParams;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,6 +25,9 @@ import java.time.format.DateTimeFormatter;
 public class VerifyCodeService {
     @Autowired
     private MailService mMailService;
+    @Autowired
+    private MailProperties mMailProperties;
+
     @Autowired
     private RegisterVerifyCodeRedisOps mCodeRedisOps;
 
@@ -56,6 +59,7 @@ public class VerifyCodeService {
 
         //发送验证码
         SimpleMailParams mailParams = SimpleMailParams.newBuilder()
+                .from(mMailProperties.getUsername())
                 .to(account)
                 .title("注册验证码")
                 .content(content)

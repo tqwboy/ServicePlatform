@@ -14,14 +14,38 @@
         <result column="avatar" property="avatar" />
         <result column="sex" property="sex" />
         <result column="status" property="status" />
-        <result column="deleted" property="deleted" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
 
+    <resultMap id="JoinRoleResultMap" type="com.hohenheim.java.serviceplatform.account.db.entity.association.UserWithRoleEntity"
+        extends="BaseResultMap">
+        <association property="role"
+                     resultMap="com.hohenheim.java.serviceplatform.account.db.mapper.RoleMapper.BaseResultMap"/>
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        user_id, tenant_id, pwd, salt, user_name, email, mobile, avatar, sex, status, deleted, create_time, update_time
+        user_id, tenant_id, pwd, salt, user_name, email, mobile, avatar, sex, status, create_time, update_time
     </sql>
+
+    <sql id="Alias_Column_List">
+        ui.user_id, ui.tenant_id, ui.pwd, ui.salt, ui.user_name, ui.email, ui.mobile, ui.avatar, ui.sex, ui.status,
+        ui.create_time, ui.update_time
+    </sql>
+
+    <select id="getUserWithRoleInfo" resultMap="JoinRoleResultMap">
+        select
+            <include refid="Alias_Column_List" />,
+            <include refid="com.hohenheim.java.serviceplatform.account.db.mapper.RoleMapper.Alias_Column_List" />
+        from
+            user_info ui
+        left join
+            user_role ur on ui.user_id = ur.user_id
+        left join
+            role r on ur.role_id = r.role_id
+        where
+            ui.user_id = #{userId}
+    </select>
 
 </mapper>

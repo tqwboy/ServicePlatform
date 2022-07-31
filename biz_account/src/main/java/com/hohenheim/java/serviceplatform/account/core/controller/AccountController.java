@@ -1,16 +1,13 @@
 package com.hohenheim.java.serviceplatform.account.core.controller;
 
-import com.hohenheim.java.serviceplatform.account.core.anno.GetLoginUserId;
+import com.hohenheim.java.serviceplatform.account.core.anno.GetUserInfo;
 import com.hohenheim.java.serviceplatform.account.core.service.UserManagerService;
-import com.hohenheim.java.serviceplatform.account.db.entity.association.UserWithRoleEntity;
-import com.hohenheim.java.serviceplatform.account.define.AccountResultCodes;
+import com.hohenheim.java.serviceplatform.account.db.entity.UserInfoEntity;
 import com.hohenheim.java.serviceplatform.account.exception.AccountAssert;
-import com.hohenheim.java.serviceplatform.account.exception.AccountException;
 import com.hohenheim.java.serviceplatform.account.model.web.params.LoginParams;
 import com.hohenheim.java.serviceplatform.account.model.web.params.RegisterParams;
 import com.hohenheim.java.serviceplatform.account.core.service.AccountService;
 import com.hohenheim.java.serviceplatform.account.model.web.resp.LoginResp;
-import com.hohenheim.java.serviceplatform.core.exception.BizAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,20 +38,18 @@ public class AccountController {
     /**
      * 用户账户激活
      * @param verifyCode 验证码
-     * @param userId 用户ID
+     * @param userInfo 用户信息
      */
-    @GetMapping("/active")
-    public Long active(@RequestParam String verifyCode, @GetLoginUserId Long userId) {
-        UserWithRoleEntity userWithRole = mUserManagerService.getUserRoleInfo(userId);
-        BizAssert.notNull(userWithRole, AccountResultCodes.USER_NOT_EXIST, AccountException.class);
-        return mAccountService.verifyAccount(verifyCode, userWithRole);
+    @GetMapping("/active/{verifyCode}")
+    public Long active(@PathVariable("verifyCode") String verifyCode, @GetUserInfo UserInfoEntity userInfo) {
+        return mAccountService.verifyAccount(verifyCode, userInfo);
     }
 
     /**
      * 用户登录接口
      */
     @PostMapping("/login")
-    public LoginResp login(LoginParams params) {
-        return mAccountService.login(params.getAccount(), params.getPassword());
+    public LoginResp login(@RequestBody LoginParams params) {
+        return mAccountService.login(params.getAccount(), params.getPwd());
     }
 }

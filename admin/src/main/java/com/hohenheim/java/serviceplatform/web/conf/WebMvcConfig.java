@@ -4,7 +4,7 @@ import cn.dev33.satoken.interceptor.SaRouteInterceptor;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hohenheim.java.serviceplatform.account.core.resolver.GetLoginUserIdResolver;
+import com.hohenheim.java.serviceplatform.account.core.resolver.GetLoginUserInfoResolver;
 import com.hohenheim.java.serviceplatform.core.utils.SimpleJacksonUtils;
 import com.hohenheim.java.serviceplatform.web.converter.JsonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 	@Autowired
-	private GetLoginUserIdResolver mGetLoginUserIdResolver;
+	private GetLoginUserInfoResolver mGetLoginUserInfoResolver;
 
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -46,7 +46,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
 	@Override
 	protected void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-		argumentResolvers.add(mGetLoginUserIdResolver);
+		argumentResolvers.add(mGetLoginUserInfoResolver);
 		super.addArgumentResolvers(argumentResolvers);
 	}
 

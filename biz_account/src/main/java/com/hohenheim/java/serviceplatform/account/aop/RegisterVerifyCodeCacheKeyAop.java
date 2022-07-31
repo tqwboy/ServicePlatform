@@ -8,8 +8,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.CodeSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * @author Hohenheim
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class RegisterVerifyCodeCacheKeyAop {
-    @Autowired
+    @Resource(name = "regCodeRedisConfig")
     private RedisOpsConfig mRedisOpsConfig;;
 
     @Pointcut("@annotation(com.hohenheim.java.serviceplatform.account.aop.anno.RegisterVerifyCodeCacheKeyAnno)")

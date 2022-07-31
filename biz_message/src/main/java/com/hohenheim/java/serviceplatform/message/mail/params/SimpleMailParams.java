@@ -29,6 +29,7 @@ public class SimpleMailParams {
     private String content;
 
     private SimpleMailParams(Builder builder) {
+        setFrom(builder.from);
         setTo(builder.to);
         setReplayTo(builder.replayTo);
         setCc(builder.cc);
@@ -43,6 +44,7 @@ public class SimpleMailParams {
 
 
     public static final class Builder {
+        private String from;
         private String[] to;
         private String replayTo;
         private String[] cc;
@@ -51,6 +53,11 @@ public class SimpleMailParams {
         private String content;
 
         private Builder() {
+        }
+
+        public Builder from(String from) {
+            this.from = from;
+            return this;
         }
 
         public Builder to(String... to) {
