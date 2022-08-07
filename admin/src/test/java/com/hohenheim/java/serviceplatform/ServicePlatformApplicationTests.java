@@ -1,6 +1,9 @@
 package com.hohenheim.java.serviceplatform;
 
+import com.hohenheim.java.serviceplatform.account.core.service.UserManagerService;
+import com.hohenheim.java.serviceplatform.account.core.service.VerifyCodeService;
 import com.hohenheim.java.serviceplatform.account.db.dao.UserInfoDAO;
+import com.hohenheim.java.serviceplatform.account.db.entity.association.UserWithRoleEntity;
 import com.hohenheim.java.serviceplatform.message.mail.MailService;
 import com.hohenheim.java.serviceplatform.message.mail.params.SimpleMailParams;
 import org.jasypt.encryption.StringEncryptor;
@@ -17,14 +20,17 @@ class ServicePlatformApplicationTests {
     @Autowired
     private StringEncryptor mEncryptor;
     @Autowired
-    private MailService mMailService;
+    private VerifyCodeService mVerifyCodeService;
+    @Autowired
+    private UserManagerService mUserManagerService;
+
     @Autowired
     private UserInfoDAO mUserInfoDAO;
 
     @Test
     void encryptor() {
         //JetCache lettuce url 加密
-        String redisUrl = mEncryptor.encrypt("redis://密码@127.0.0.1:6379/1?timeout=3000");
+        String redisUrl = mEncryptor.encrypt("redis://tqw1986216$@192.168.88.5:6379/1?timeout=3000");
         System.out.println("密文:" + redisUrl);
 
         Assertions.assertEquals("", "");
@@ -40,6 +46,7 @@ class ServicePlatformApplicationTests {
 //                .content("SpringBoot 测试邮件")
 //                .build();
 //
-//        Assertions.assertTrue(mMailService.sendSimpleMail(params));
+        UserWithRoleEntity userWithRole = mUserManagerService.getUserRoleInfo(6042150805L);
+        Assertions.assertTrue(true);
     }
 }

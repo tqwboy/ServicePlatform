@@ -10,6 +10,8 @@ import com.hohenheim.java.serviceplatform.core.define.IResultCode;
 public class ServicePlatformException extends RuntimeException {
     private String errorCode;
 
+    private boolean logging;
+
     /**
      * @param resultCode 错误信息
      */
@@ -32,5 +34,9 @@ public class ServicePlatformException extends RuntimeException {
      */
     public String getErrorCode() {
         return errorCode;
+    }
+
+    public boolean isLogging() {
+        return logging;
     }
 }

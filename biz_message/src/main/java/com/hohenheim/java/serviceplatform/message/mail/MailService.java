@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author Hohenheim
@@ -25,7 +27,8 @@ public class MailService {
      * 发送简单邮件
      * @param mailParams 邮件
      */
-    public boolean sendSimpleMail(SimpleMailParams mailParams) {
+    @Async("coreAsyncExecutor")
+    public CompletableFuture<Boolean> sendSimpleMail(SimpleMailParams mailParams) {
         boolean sendResult = true;
         SimpleMailMessage sendMessage = new SimpleMailMessage();
 
@@ -46,6 +49,6 @@ public class MailService {
             log.error("[SendMail] 邮件发送失败", e);
         }
 
-        return sendResult;
+        return CompletableFuture.completedFuture(sendResult);
     }
 }

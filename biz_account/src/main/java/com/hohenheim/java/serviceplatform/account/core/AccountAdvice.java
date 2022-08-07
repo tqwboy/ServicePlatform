@@ -6,24 +6,24 @@ import com.hohenheim.java.serviceplatform.account.exception.AccountException;
 import com.hohenheim.java.serviceplatform.core.model.BaseRespModel;
 import com.hohenheim.java.serviceplatform.core.web.ResponsePack;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Hohenheim
  * @date 2022/7/24
  * @description 用户模块统一错误处理中心
  */
-@ControllerAdvice(basePackages = "com.hohenheim.java.serviceplatform.account")
+@RestControllerAdvice(basePackages = "com.hohenheim.java.serviceplatform.account")
+@Order(value = 1)
 @Slf4j
 public class AccountAdvice {
     @ExceptionHandler(value = AccountException.class)
-    @ResponseBody
     public BaseRespModel<Object> apiReqException(AccountException exception) {
-        log.error("[Account] 用户模块API错误", exception);
+        if (exception.isLogging()) {
+            log.error("[Account] 用户模块API错误", exception);
+        }
         return ResponsePack.reqFail(exception.getErrorCode(), exception.getMessage());
     }
 
@@ -32,7 +32,6 @@ public class AccountAdvice {
      */
     @ExceptionHandler(value = NotLoginException.class)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    @ResponseBody
     public BaseRespModel<Object> unauthenticationException(NotLoginException ex) {
         log.error("[Account] 登录异常：" + ex.getMessage(), ex);
 

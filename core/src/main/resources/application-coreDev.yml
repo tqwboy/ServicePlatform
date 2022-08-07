@@ -1,8 +1,17 @@
 id-generator:
   user-id-generator:
-    baseTime: 2022/07/16 00:00:00    # yyyy/MM/dd
+    baseTime: 2022/08/07 00:00:00    # yyyy/MM/dd
     workerId : 1            # 0-31  (0 is reserved for server)
     workerIdBitLength : 3   # 机器码位长，决定 WorkerId 的最大值，默认值6，取值范围 [1, 19]，实际上有些语言采用 无符号 ushort (uint16) 类型接收该参数，所以最大值是16，如果是采用 有符号 short (int16)，则最大值为15。
     seqBitLength : 4        # 序列数位长，默认值6，取值范围 [3, 21]（建议不小于4），决定每毫秒基础生成的ID个数。规则要求：WorkerIdBitLength + SeqBitLength 不超过 22。
     minSeqNumber : 5        # 0-31 (0 is reserved for server)
     maxSeqNumber : 0        # 0-63 (0 is reserved for server)
+
+# 异步任务线程池配置
+async-task-thread-pool:
+  core:
+    core-pool-size: 2       #核心线程数
+    max-pool-size: 16       #最大线程数
+    keep-alive-seconds: 30  #允许线程空闲
+    queue-capacity: 128     #等待队列大小
+    thread-name-prefix: ServicePlatform-core-async-

@@ -7,15 +7,13 @@ import com.hohenheim.java.serviceplatform.core.web.ResponsePack;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.beans.BeansException;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -26,11 +24,11 @@ import java.util.List;
  * @date 2022/7/24
  * @description 统一错误处理中心
  */
-@ControllerAdvice(basePackages = "com.hohenheim.java.serviceplatform")
+@RestControllerAdvice(basePackages = "com.hohenheim.java.serviceplatform")
+@Order
 @Slf4j
 public class ExceptionAdvice {
     @ExceptionHandler(value = ServicePlatformException.class)
-    @ResponseBody
     public BaseRespModel<Object> apiReqException(ServicePlatformException exception) {
         log.error("[ServicePlatform] API错误", exception);
         return ResponsePack.reqFail(exception.getErrorCode(), exception.getMessage());
@@ -38,7 +36,6 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(value = {PersistenceException.class, SQLException.class})
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
     public BaseRespModel<Object> sqlException(Exception exception) {
         log.error("[ServicePlatform] 数据库错误：", exception);
         return ResponsePack.reqFail(CoreResultCodes.CORE_SYSTEM_ERROR);
@@ -46,7 +43,6 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(value = {IOException.class})
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
     public BaseRespModel<Object> apiReqException(Exception exception) {
         log.error("[ServicePlatform] IO错误：", exception);
         return ResponsePack.reqFail(CoreResultCodes.CORE_SYSTEM_ERROR);
@@ -54,7 +50,6 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class, BindException.class})
     @ResponseStatus(code= HttpStatus.BAD_REQUEST)
-    @ResponseBody
     public BaseRespModel<Object> validException(Exception e) {
         BindingResult result;
         if(e instanceof MethodArgumentNotValidException exception) {
@@ -78,7 +73,6 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(value = NullPointerException.class)
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
     public BaseRespModel<Object> nullPointerException(NullPointerException ex) {
         log.error("[ServicePlatform] 空指针异常：" + ex.getMessage(), ex);
         return ResponsePack.reqFail(CoreResultCodes.CORE_SYSTEM_ERROR);
@@ -86,7 +80,6 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(value = BeansException.class)
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
     public BaseRespModel<Object> beansException(BeansException ex) {
         log.error("[ServicePlatform] 数据复制异常：" + ex.getMessage(), ex);
         return ResponsePack.reqFail(CoreResultCodes.CORE_SYSTEM_ERROR);

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <contextName>${HOSTNAME}</contextName>
+    <conversionRule conversionWord="ip" converterClass="com.hohenheim.java.serviceplatform.web.conf.IpLogConfig" />
+
+    <property name="appName" value="ServicePlatform" />
+    <property name="LOG_PATH_INFO" value="/app/logs/dev/info" />
+    <property name="LOG_PATH_ERROR" value="/app/logs/dev/error" />
+    <property name="LOG_PREFIX" value="${appName}" />
+	<property name="CONSOLE_LOG_PATTERN"
+              value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [${ip}] [%highlight(%-5level)] [%blue(%thread)] [%green(%logger)] %yellow(%msg%n)" />
+
+    <appender name="WARN_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH_INFO}/${LOG_PREFIX}-info.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 每天一归档 -->
+            <fileNamePattern>${LOG_PATH_INFO}/${LOG_PREFIX}-info-%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <!-- 单个日志文件最多20MB, 3天的日志周期，最大不能超过20GB -->
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>3</maxHistory>
+            <totalSizeCap>20GB</totalSizeCap>
+        </rollingPolicy>
+		
+		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder" charset="utf-8">
+            <providers>
+                <timestamp>
+                    <timeZone>GMT+8</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+						{
+                            "ip": "${ip}",
+                            "app": "${appName}",
+                            "level": "%level",
+                            "thread": "%thread",
+                            "class": "%logger{40}",
+                            "message": "%message"
+                        }
+                    </pattern>
+				</pattern>
+            </providers>
+        </encoder>
+    </appender>
+	
+	<appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH_ERROR}/${LOG_PREFIX}-error.log</file>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH_ERROR}/${LOG_PREFIX}-error-%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>3</maxHistory>
+            <totalSizeCap>20GB</totalSizeCap>
+        </rollingPolicy>
+		
+		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder" charset="utf-8">
+            <providers>
+                <timestamp>
+                    <timeZone>GMT+8</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+						{
+                            "ip": "${ip}",
+                            "app": "${appName}",
+                            "level": "%level",
+                            "thread": "%thread",
+                            "class": "%logger{40}",
+                            "message": "%message",
+                            "stack_trace": "%exception{10}"
+                        }
+                    </pattern>
+				</pattern>
+            </providers>
+        </encoder>
+    </appender>
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+    </appender>
+	
+	<!-- 打印 Spring 信息 -->
+    <logger name="org.springframework.*" level="INFO" addtivity="false" />
+    <!-- 打印sql -->
+    <logger name="com.*.*.mapper" level="INFO" addtivity="true" />
+    <!-- druid信息 -->
+    <logger name="druid.sql.*" level="INFO" addtivity="true" />
+    <logger name="com.alibaba.druid.*" level="INFO" addtivity="true" />
+
+    <!--myibatis log configure-->
+    <logger name="com.apache.ibatis.*" level="DEBUG" addtivity="true" />
+    <logger name="com.apache.ibatis.*" level="WARN" addtivity="true">
+        <appender-ref ref="WARN_LOG"/>
+    </logger>
+
+    <logger name="java.sql.*" level="DEBUG" addtivity="true" />
+    <logger name="java.sql.*" level="ERROR" addtivity="true">
+        <appender-ref ref="WARN_LOG"/>
+    </logger>
+
+    <!-- Quartz -->
+    <logger name="org.quartz.*" level="WARN" addtivity="true">
+        <appender-ref ref="WARN_LOG"/>
+    </logger>
+    <!-- jetty -->
+    <logger name="org.eclipse.jetty.*" level="WARN" addtivity="true" />
+
+    <!-- Redis -->
+    <logger name="io.lettuce.core.*" level="INFO" addtivity="true" />
+    <logger name="com.alicp.jetcache.*" level="INFO" addtivity="true" />
+
+    <!-- 工程日志 -->
+    <logger name="com.hohenheim.java.serviceplatform.*" level="INFO">
+        <appender-ref ref="WARN_LOG" />
+    </logger>
+	
+	<root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ERROR_LOG"/>
+    </root>
+</configuration>

@@ -28,6 +28,14 @@ public class SimpleMailParams {
 
     private String content;
 
+    public String getToString(String delimiter) {
+        return String.join(delimiter, to);
+    }
+
+    public String getToString() {
+        return String.join(",", to);
+    }
+
     private SimpleMailParams(Builder builder) {
         setFrom(builder.from);
         setTo(builder.to);

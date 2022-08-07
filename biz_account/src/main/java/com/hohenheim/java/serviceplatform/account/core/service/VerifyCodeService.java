@@ -9,12 +9,17 @@ import com.hohenheim.java.serviceplatform.account.model.data.RegisterVerifyCodeC
 import com.hohenheim.java.serviceplatform.core.exception.BizAssert;
 import com.hohenheim.java.serviceplatform.message.mail.MailService;
 import com.hohenheim.java.serviceplatform.message.mail.params.SimpleMailParams;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author Hohenheim
@@ -22,6 +27,7 @@ import java.time.format.DateTimeFormatter;
  * @description 验证码发送服务
  */
 @Service
+@Slf4j
 public class VerifyCodeService {
     @Autowired
     private MailService mMailService;
@@ -65,7 +71,21 @@ public class VerifyCodeService {
                 .content(content)
                 .build();
 
-        boolean sendResult = mMailService.sendSimpleMail(mailParams);
+        CompletableFuture<Boolean> sendResultFuture = mMailService.sendSimpleMail(mailParams);
+        boolean sendResult = false;
+        try {
+            sendResult = sendResultFuture.get(18, TimeUnit.SECONDS);
+        }
+        catch (InterruptedException | ExecutionException | TimeoutException e) {
+            String errorMsg = String.format("发送注册验证码失败，发送人：%s，接收人：%s，主题：%s，内容：%s",
+                    mailParams.getFrom(), mailParams.getToString("|"), mailParams.getTitle(), mailParams.getContent());
+            log.error(errorMsg, e);
+
+            if(e instanceof InterruptedException) {
+                Thread.currentThread().interrupt();
+            }
+        }
+
         if(!sendResult) {
             //删除缓存
             mCodeRedisOps.delCache(account);

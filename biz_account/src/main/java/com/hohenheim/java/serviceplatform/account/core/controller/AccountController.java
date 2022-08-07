@@ -1,7 +1,6 @@
 package com.hohenheim.java.serviceplatform.account.core.controller;
 
 import com.hohenheim.java.serviceplatform.account.core.anno.GetUserInfo;
-import com.hohenheim.java.serviceplatform.account.core.service.UserManagerService;
 import com.hohenheim.java.serviceplatform.account.db.entity.UserInfoEntity;
 import com.hohenheim.java.serviceplatform.account.exception.AccountAssert;
 import com.hohenheim.java.serviceplatform.account.model.web.params.LoginParams;
@@ -21,8 +20,6 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
     @Autowired
     private AccountService mAccountService;
-    @Autowired
-    private UserManagerService mUserManagerService;
 
     /**
      * 用户名、邮箱注册接口
