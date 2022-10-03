@@ -37,6 +37,12 @@ public class ResponsePack {
         return reqFail(resultCode.getCode(), resultCode.getMsg());
     }
 
+    public static FailRespModel<Object> reqFail(IResultCode resultCode, Object data) {
+        FailRespModel<Object> resultResp = reqFail(resultCode.getCode(), resultCode.getMsg());
+        resultResp.setData(data);
+        return resultResp;
+    }
+
     public static FailRespModel<Object> reqFail(String errCode, String msg) {
         FailRespModel<Object> resultResp = new FailRespModel<>();
         resultResp.setResultCode(errCode);

@@ -20,16 +20,27 @@ import java.time.format.DateTimeFormatter;
  */
 @Configuration
 public class IdGeneratorFactory {
+    @Bean("generalIdGeneratorConfig")
+    @ConfigurationProperties(prefix = "id-generator.general-id-generator")
+    @Primary
+    public IdGeneratorConfig generalIdGeneratorConfig() {
+        return new IdGeneratorConfig();
+    }
+
+    @Bean("generalIdGenerator")
+    @Primary
+    public IIdGenerator generalIdGenerator(@Qualifier("generalIdGeneratorConfig") IdGeneratorConfig config) {
+        return createIdGenerator(config);
+    }
+
     @Bean("userIdGeneratorConfig")
     @ConfigurationProperties(prefix = "id-generator.user-id-generator")
-    @Primary
-    public IdGeneratorConfig creatIdGeneratorConfig() {
+    public IdGeneratorConfig userIdGeneratorConfig() {
         return new IdGeneratorConfig();
     }
 
     @Bean("userIdGenerator")
-    @Primary
-    public IIdGenerator getUserIdGenerator(@Qualifier("userIdGeneratorConfig") IdGeneratorConfig config) {
+    public IIdGenerator userIdGenerator(@Qualifier("userIdGeneratorConfig") IdGeneratorConfig config) {
         return createIdGenerator(config);
     }
 

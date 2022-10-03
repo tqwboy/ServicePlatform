@@ -1,11 +1,9 @@
 package com.hohenheim.java.serviceplatform;
 
-import com.hohenheim.java.serviceplatform.account.core.service.UserManagerService;
-import com.hohenheim.java.serviceplatform.account.core.service.VerifyCodeService;
+import com.hohenheim.java.serviceplatform.account.web.service.UserManagerService;
+import com.hohenheim.java.serviceplatform.account.web.service.VerifyCodeService;
 import com.hohenheim.java.serviceplatform.account.db.dao.UserInfoDAO;
 import com.hohenheim.java.serviceplatform.account.db.entity.association.UserWithRoleEntity;
-import com.hohenheim.java.serviceplatform.message.mail.MailService;
-import com.hohenheim.java.serviceplatform.message.mail.params.SimpleMailParams;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

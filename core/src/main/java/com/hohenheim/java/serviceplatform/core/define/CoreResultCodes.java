@@ -22,10 +22,12 @@ public enum CoreResultCodes implements IResultCode {
         this.msg = msg;
     }
 
+    @Override
     public String getMsg() {
         return this.msg;
     }
 
+    @Override
     public String getCode() {
         return this.code;
     }

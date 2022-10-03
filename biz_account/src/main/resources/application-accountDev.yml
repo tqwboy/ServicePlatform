@@ -14,3 +14,21 @@ sa-token:
   auto-renew: true                     #是否打开自动续签 (如果此值为true, 框架会在每次直接或间接调用getLoginId()时进行一次过期检查与续签操作)
   is-print: true                        #是否在初始化配置时打印版本字符画
   is-log: true
+
+redis:
+  ops:
+    register-verify-code:
+      keyPrefix: "account:verify:register:"
+      expireSeconds: 300
+    user-info:
+      keyPrefix: "account:user:info:"
+      expireSeconds: 3600
+
+platforms:
+  wx:
+    applet:
+      appId: wx055c7d6cbdca89e4
+      secret: 9e4240b56f1fec522a8d81f530694e0e
+      oauthUrl: https://open.weixin.qq.com/connect/oauth2/authorize
+      callbackUrl: http://xxx.xx.com/auth/third/wx/auth/callback
+    baseUrl: https://api.weixin.qq.com

@@ -25,6 +25,18 @@
             <artifactId>yitter-idgenerator</artifactId>
             <version>1.0.6</version>
         </dependency>
+
+        <!-- HTTP 请求 -->
+        <dependency>
+            <groupId>com.github.lianjiatech</groupId>
+            <artifactId>retrofit-spring-boot-starter</artifactId>
+            <version>2.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-core</artifactId>
+            <version>1.8.5</version>
+        </dependency>
     </dependencies>
 
     <build>

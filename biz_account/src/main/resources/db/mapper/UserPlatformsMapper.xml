@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hohenheim.java.serviceplatform.account.db.mapper.UserPlatformsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.hohenheim.java.serviceplatform.account.db.entity.UserPlatformsEntity">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="platform_id" property="platformId" />
+        <result column="union_id" property="unionId" />
+        <result column="open_id" property="openId" />
+        <result column="key" property="key" />
+        <result column="access_token" property="accessToken" />
+        <result column="refresh_token" property="refreshToken" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, platform_id, union_id, open_id, key, access_token, refresh_token, create_time
+    </sql>
+
+    <sql id="Alias_Column_List">
+        up.id, up.user_id, up.platform_id, up.union_id, up.open_id, up.key, up.access_token, up.refresh_token,
+        up.create_time
+    </sql>
+
+</mapper>

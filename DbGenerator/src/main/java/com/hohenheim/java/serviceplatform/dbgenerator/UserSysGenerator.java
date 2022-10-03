@@ -39,18 +39,18 @@ public class UserSysGenerator {
         FastAutoGenerator.create(dbUrl, dbUser, dbPwd)
                 .globalConfig(builder -> {
                     builder.author("Hohenheim") // 设置作者
-                            .outputDir(projectPath + "/user-sys/src/main/java")
+                            .outputDir(projectPath + "/biz_account/src/main/java")
                             .disableOpenDir()
                             .dateType(DateType.TIME_PACK);
                 })
                 .packageConfig(builder -> {
-                    builder.parent("com.hohenheim.java.serviceplatform.usersys") // 设置父包名
+                    builder.parent("com.hohenheim.java.serviceplatform.account") // 设置父包名
                             .moduleName("db")
                             .mapper("mapper")
                             .entity("entity")
                             .service("dao")
                             .serviceImpl("dao.impl")
-                            .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + "/user-sys/src/main/resources/db/mapper")); // 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + "/biz_account/src/main/resources/db/mapper")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
                     builder.enableCapitalMode()
@@ -66,9 +66,10 @@ public class UserSysGenerator {
                             .enableBaseColumnList()
                             .serviceBuilder()
                             .formatServiceFileName("%sDAO")
+                            .fileOverride() //覆盖文件，慎用
                             .formatServiceImplFileName("%sDAOImpl");
 
-                    builder.addInclude("login_record", "role", "user_extend", "user_info", "user_role");
+                    builder.addInclude("user_platforms");
                 })
                 .templateConfig(builder -> {
                     builder.controller("");  //不生成Controller
