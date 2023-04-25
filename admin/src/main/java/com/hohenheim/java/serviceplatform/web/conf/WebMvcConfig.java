@@ -1,6 +1,6 @@
 package com.hohenheim.java.serviceplatform.web.conf;
 
-import cn.dev33.satoken.interceptor.SaRouteInterceptor;
+import cn.dev33.satoken.interceptor.SaInterceptor;
 import cn.dev33.satoken.router.SaRouter;
 import cn.dev33.satoken.stp.StpUtil;
 import com.hohenheim.java.serviceplatform.account.web.resolver.GetLoginUserInfoResolver;
@@ -37,7 +37,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		String[] excludePath = {"/account/register", "/account/login"};
 
 		//注册登录验证与鉴权拦截器
-		registry.addInterceptor(new SaRouteInterceptor((request, response, handler) -> {
+		registry.addInterceptor(new SaInterceptor(handler -> {
 			//登录检测
 			SaRouter.match("/account/**", StpUtil::checkLogin);
 

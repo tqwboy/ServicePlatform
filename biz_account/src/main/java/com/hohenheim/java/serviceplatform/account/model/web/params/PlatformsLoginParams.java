@@ -1,8 +1,7 @@
 package com.hohenheim.java.serviceplatform.account.model.web.params;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-
-import javax.validation.constraints.NotBlank;
 
 /**
  * @author Hohenheim
