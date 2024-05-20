@@ -33,9 +33,9 @@ public class UserSysGenerator {
         config.setStringOutputType("base64");
         encryptor.setConfig(config);
 
-        String dbUrl = encryptor.decrypt("zBzbVkxmWezvkgFXQbB7+cipYL1J8uQHpYBA8UiAxRiSnzg7n3oHl9W1m9QMO9mT/kHOTPehKZQnSexQF7kGX4pjDrjyVjcSFYcdjKqX21ZPSlGJIxbjSGOrhdhjmjmpSj8RJN0sGZwYcEPpIUSqL0DpnaneeFgm4qMyJke4nD1rDjTEN60p7r677+JrWxEWx1K03CnADzf6VguGzaAG0bBII20msuCuQW6VkhmWEezxbzcp/BQ62e8WBr7Ymix6");
-        String dbUser = encryptor.decrypt("jlFfDqIgZ3PTEbv9TcXqp+8dTYjfNomiKmG4Off9/Hk4Z4ocrV8MS1X9WghzTRTH");
-        String dbPwd = encryptor.decrypt("ACypfZhg5boYv1CggNcWX3EsGlI21w7fiviKT0Y7ukHSYETI+/Wazs/rFAEUOXb2");
+        String dbUrl = encryptor.decrypt("QOYkHwJ5//RrZc/pvzKa9rp7S3643jcE1CDfXWPxqsjjfgSCuoK5N+2AnBPG8eml7orGFMlgKM6R4wjjb0i5sjzV+FYWJLL2te7sfVKsHnRP2dzCHURoUrgPHxHaUPma10l6krfAKo/d4zYp+E807HuMeYkyO6U/bjw2HmeHiFKOsR+LqfPZi1Tlo33mtsJlyEUaGkn68VWAVEibsedngw==");
+        String dbUser = encryptor.decrypt("Etxoqvz0BzQz1HgXtJq26MJadXxbrguY3jhVTBI4jUTcXjaYFyXmUIGA1LszniPb");
+        String dbPwd = encryptor.decrypt("wBWr6Ggvl8ni1283saz+QQ4CvUHirnvGrmOobxtfn35OkTQZFzEj1EhT67/RCq/K");
         FastAutoGenerator.create(dbUrl, dbUser, dbPwd)
                 .globalConfig(builder -> {
                     builder.author("Hohenheim") // 设置作者
